@@ -36,9 +36,10 @@ public class Arma1 : MonoBehaviour
             {
                 hitInfo.rigidbody.AddForce(-hitInfo.normal * impactForce);
             }
-            Instantiate(impactEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            GameObject impactGO = Instantiate(impactEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            Destroy(impactGO, 2.0f);
         }
-
+       
 
     }
 }
