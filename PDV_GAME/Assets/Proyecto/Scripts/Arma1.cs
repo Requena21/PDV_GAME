@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Arma1 : MonoBehaviour
 {
@@ -9,20 +10,51 @@ public class Arma1 : MonoBehaviour
     public ParticleSystem muzzleFlare;
     public GameObject impactEffect;
 
+    public int maxAmmo = 10;
+    private int currentAmmo;
+    public int reloadTime = 1;
+    private bool isReloading = false;
+
+    void Start()
+    {
+        currentAmmo = maxAmmo;
+    }
+
+    void OnEnable()
+    {
+        isReloading = false;
+    }
     // Update is called once per frame
     void Update()
     {
+        if (isReloading)
+            return;
+
+        if (currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             shoot();
         }
 
-
+    }
+    
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
     void shoot()
     {
         muzzleFlare.Play();
+        currentAmmo--;
         RaycastHit hitInfo;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitInfo, range))
         {
