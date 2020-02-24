@@ -17,8 +17,8 @@ public class Movimiento : MonoBehaviour
     private float sensMultiplier = 1f;
 
     //Movement
-    public float moveSpeed = 4500;
-    public float maxSpeed = 20;
+    public float moveSpeed = 3000;
+    public float maxSpeed = 10;
     public bool grounded;
     public LayerMask whatIsGround;
 
@@ -35,7 +35,7 @@ public class Movimiento : MonoBehaviour
     //Jumping
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
-    public float jumpForce = 550f;
+    public float jumpForce = 300f;
 
     //Input
     float x, y;
