@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Movimiento : MonoBehaviour
 {
 
@@ -8,6 +8,8 @@ public class Movimiento : MonoBehaviour
     public Transform playerCam;
     public Transform orientation;
 
+    //Player lives
+    public int lives = 10;
     //Other
     private Rigidbody rb;
 
@@ -61,12 +63,15 @@ public class Movimiento : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
+        damage();
     }
 
     private void Update()
     {
         MyInput();
         Look();
+        death();
+ 
     }
 
     /// <summary>
@@ -292,6 +297,20 @@ public class Movimiento : MonoBehaviour
     private void StopGrounded()
     {
         grounded = false;
+    }
+    private void damage()
+    {
+        if (Input.GetKey("k"))
+        {
+            lives--;
+        }
+    }
+    private void death()
+    {
+        if(lives <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
 }
