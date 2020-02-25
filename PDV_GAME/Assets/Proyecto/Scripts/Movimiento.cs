@@ -71,7 +71,10 @@ public class Movimiento : MonoBehaviour
         MyInput();
         Look();
         death();
- 
+        if (GameObject.FindWithTag("Enemy") == null)
+        {
+            SceneManager.LoadScene("Level2");
+        }
     }
 
     /// <summary>
