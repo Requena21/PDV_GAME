@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Movimiento : MonoBehaviour
 {
-    private int escena = 0;
 
     //Assingables
     public Transform playerCam;
@@ -72,11 +71,6 @@ public class Movimiento : MonoBehaviour
         MyInput();
         Look();
         death();
-       //escena = SceneManager.GetActiveScene() ;
-        if (GameObject.FindWithTag("Enemy") == null)
-        {
-            SceneManager.LoadScene(escena);
-        }
     }
 
     /// <summary>
